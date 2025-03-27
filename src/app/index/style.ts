@@ -62,7 +62,6 @@ export const styles = StyleSheet.create({
       width: 80,
       height: 80,
       borderRadius: 8,
-      margin: 1,
       marginBottom: 20
    },
    itemName: {
