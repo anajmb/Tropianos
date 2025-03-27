@@ -31,8 +31,8 @@ export const styles = StyleSheet.create({
    subTitle: {
     fontWeight: 300,
     textAlign: "center",
-    color: "#8e8e8e",
-    marginTop: 10
+    color: "#444444",
+    marginTop: 5
    },
    tabs: {
       flexDirection: "row",
@@ -61,19 +61,19 @@ export const styles = StyleSheet.create({
    itemImage: {
       width: 80,
       height: 80,
-      borderRadius: 8
+      borderRadius: 8,
+      margin: 1,
+      marginBottom: 20
    },
    itemName: {
-      fontSize: 16,
-      fontWeight: "bold"
+      fontSize: 19,
+      fontWeight: 500,
+      marginLeft: 25
    },
    itemDescription: {
       color: "#666",
-      marginTop: 4
-   },
-   itemPrice: {
-      fontSize: 16,
-      fontWeight: "bold",
-      marginTop: 8
+      marginTop: 10,
+      marginLeft: 20,
+      fontSize: 14
    }
 })

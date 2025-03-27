@@ -6,24 +6,27 @@ export default function Index() {
 const MENU = [
     {
         id: 1,
-        name: "Lasanha",
-        description: "Massa de lasanha caseira, queijo mussarela...",
-        price: 25.50,
+        name: "Lasanha 500g",
+        description: "Sabores: Bolonhesa, quatro queijos, bauru e vegano;",
         image: require("@/assets/images/lasanha.jpg")
     },
     {
         id: 2,
-        name: "Fettucine",
-        description: "Massa de fettucine caseira, queijo mussarela...",
-        price: 25.50,
+        name: "Fettucine 500g",
+        description: "Sabores: Bolonhesa, quatro queijos, bauru e vegano;",
         image: require("@/assets/images/fettucine.jpg")
     },
     {
         id: 3,
-        name: "Espaguete",
-        description: "Massa de espaguete caseira, queijo mussarela...",
-        price: 25.50,
+        name: "Espaguete 500g",
+        description: "Sabores: Bolonhesa, quatro queijos, bauru e vegano;",
         image: require("@/assets/images/espaguete.jpeg")
+    },
+    {
+        id: 3,
+        name: "Pizza 500g",
+        description: "Sabores: Bolonhesa, quatro queijos, bauru e vegano;",
+        image: require("@/assets/images/pizza.jpg")
     }
 ]
 
@@ -49,12 +52,12 @@ const MENU = [
             {
                 MENU.map((item) => (
                     <TouchableOpacity style={styles.menuItem}>
+                         <Image style={styles.itemImage} source={item.image}></Image>
                     <View style={styles.menuContent}>
                         <Text style={styles.itemName}>{item.name}</Text>
                         <Text style={styles.itemDescription}>{item.description}</Text>
-                        <Text style={styles.itemPrice}>{item.price.toFixed(2)}</Text>
                     </View>
-                    <Image style={styles.itemImage} source={item.image}></Image>
+                   
                 </TouchableOpacity>
               ))
             }
