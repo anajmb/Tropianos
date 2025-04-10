@@ -1,40 +1,47 @@
-import { Text, TextInput, StyleSheet, View } from "react-native";
+import { Text, TextInput, StyleSheet, View, Button, TouchableOpacity, Image } from "react-native";
 import { styles } from "../cadastro/styles";
+import { Link } from "expo-router";
 
 export default function CadastroPage() {
     return (
         <View style={styles.container}>
-
-            <View style={styles.campos}>
+              <Image style={styles.headerImage} source={require("@/assets/images/icon.png")} />
+            
+            <View style={styles.camposCadastro}>
                 <Text style={styles.cadastroName}>Cadastro</Text>
 
                 <View>
-                    <Text style={styles.emailName}>E-mail:</Text>
-                    <TextInput placeholder="E-mail"></TextInput>
+                    <Text >E-mail:</Text>
+                    <TextInput style={styles.input} placeholder="E-mail"></TextInput>
                 </View>
 
                 <View>
-                    <Text style={styles.name}>Nome:</Text>
-                    <TextInput placeholder="Nome completo"></TextInput>
+                    <Text >Nome:</Text>
+                    <TextInput style={styles.input} placeholder="Nome completo"></TextInput>
                 </View>
 
                 <View>
-                    <Text style={styles.cpfName}>CPF:</Text>
-                    <TextInput placeholder="CPF"></TextInput>
+                    <Text >CPF:</Text>
+                    <TextInput style={styles.input} placeholder="CPF"></TextInput>
                 </View>
 
                 <View>
-                    <Text style={styles.dateName}>Data de nascimento:</Text>
-                    <TextInput placeholder="Data de nascimento"></TextInput>
+                    <Text >Data de nascimento:</Text>
+                    <TextInput style={styles.input} placeholder="Data de nascimento"></TextInput>
                 </View>
 
                 <View>
-                    <Text style={styles.senhaNumber} >Senha</Text>
-                    <TextInput placeholder="Senha" secureTextEntry></TextInput>
+                    <Text>Senha:</Text>
+                    <TextInput  style={styles.input} placeholder="Senha" secureTextEntry></TextInput>
                 </View>
+
+                 <Link href={"/home/page"} asChild>
+                                <TouchableOpacity>
+                                    <Text style={styles.buttonEnviar}>Enviar </Text>
+                                </TouchableOpacity>
+                            </Link>
+                            <Link href={"/"}><Text style={styles.buttonLogin}>Fazer login</Text></Link>
             </View>
-                <Button title="Submit" style={styles.buttonEnviar}>Enviar</Button>
-
         </View>
     )
 }
