@@ -32,8 +32,8 @@ export default function CadastroPage() {
                     <Text style={styles.senhaNumber} >Senha</Text>
                     <TextInput placeholder="Senha" secureTextEntry></TextInput>
                 </View>
-
             </View>
+                <Button title="Submit" style={styles.buttonEnviar}>Enviar</Button>
 
         </View>
     )

@@ -7,19 +7,19 @@ export default function LoginScreen() {
         <View style={styles.container}>
 
             <View style={styles.campos}>
-                <Text style={styles.LoginName}>Login</Text>
+                <Text style={styles.loginName}>Login</Text>
                 
                 <View>
-                    <Text style={styles.emailName}>E-mail</Text>
+                    <Text style={styles.emailName}>E-mail:</Text>
                     <TextInput placeholder="Seu e-mail"></TextInput>
                 </View>
 
                 <View>
-                    <Text>Senha</Text>
+                    <Text style={styles.senhaNumber}>Senha</Text>
                     <TextInput placeholder="Sua senha" secureTextEntry></TextInput>
                 </View>
-
             </View>
+                <Button title="Submit" style={styles.buttonEnviar}>Enviar</Button>
 
             <Link href={"/home/page"} asChild>
                 <TouchableOpacity>
