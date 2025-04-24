@@ -1,9 +1,24 @@
-import { Image, Text, StyleSheet, TouchableOpacity, ScrollView, View } from "react-native";
-import { styles } from "../produto/style";
-
+import { Image, Text, StyleSheet, TouchableOpacity, ScrollView, View, ImageSourcePropType } from "react-native";
+import { styles } from "./style";
+import { useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
+import { ProdutoType } from "../home/page";
 
 
 export default function ProductScreen() {
+    const {id} = useLocalSearchParams()
+    const [produto, setProduto] = useState<ProdutoType>()
+
+    function getProduto(){
+        fetch(`http://localhost:3000/produto/${id}`)
+        .then((res) => res.json())
+        .then(data => setProduto(data))
+    }
+
+    useEffect(() => {
+        getProduto()
+    }, [])
+
     const MOLHO = [
         {
             id: 1,
@@ -36,14 +51,14 @@ export default function ProductScreen() {
 
             <View style={styles.header}>
                 <Image style={styles.headerImage} source={require("@/assets/images/lasanha.jpg")} />
-                <Text style={styles.produtoName}>Lasanha 500g</Text>
-                <Text style={styles.precoProduto}>R$45,00</Text>
+                <Text style={styles.produtoName} >{produto?.name}</Text>
+                <Text style={styles.precoProduto}>R$ {produto?.price}</Text>
                 <Text style={styles.linha}></Text>
             </View>
 
             <ScrollView style={styles.molhoList}>
                 {
-                    MOLHO.map((item) => (
+                   MOLHO.map((item) => (
                         <TouchableOpacity style={styles.molhoItem}>
                             <Image style={styles.itemImage} source={item.image}></Image>
                             <View style={styles.molhoContent}>

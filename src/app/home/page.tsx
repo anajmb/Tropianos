@@ -1,35 +1,57 @@
-import { Image, StyleSheet, Text, Touchable, TouchableOpacity, ScrollView, View } from "react-native";
+import { Image, StyleSheet, Text, Touchable, TouchableOpacity, ScrollView, View, ImageSourcePropType } from "react-native";
 import { styles } from "./style"
 import { Link } from "expo-router";
+import { useEffect, useState } from "react";
 
+
+export type ProdutoType = {
+    id: number,
+    name: string,
+    price: number, 
+    description: string,
+    imgUrl: ImageSourcePropType,
+    ingredients: string
+}
 
 export default function Index() {
-    const MENU = [
-        {
-            id: 1,
-            name: "Lasanha 500g",
-            description: "Sabores: Bolonhesa, quatro queijos, bauru e vegano;",
-            image: require("@/assets/images/lasanha.jpg")
-        },
-        {
-            id: 2,
-            name: "Fettucine 500g",
-            description: "Sabores: Bolonhesa, quatro queijos, bauru e vegano;",
-            image: require("@/assets/images/fettucine.jpg")
-        },
-        {
-            id: 3,
-            name: "Espaguete 500g",
-            description: "Sabores: Bolonhesa, quatro queijos, bauru e vegano;",
-            image: require("@/assets/images/espaguete.jpeg")
-        },
-        {
-            id: 3,
-            name: "Pizza 500g",
-            description: "Sabores: Bolonhesa, quatro queijos, bauru e vegano;",
-            image: require("@/assets/images/pizza.jpg")
-        }
-    ]
+    const [produtos, setProdutos] = useState<ProdutoType[]>()
+
+    function fetchProdutos(){
+        fetch("http://localhost:3000/produto")
+        .then((res) => res.json())
+        .then(data => setProdutos(data))
+    }
+
+    useEffect(() => {
+        fetchProdutos()
+    })
+
+    // const MENU = [
+    //     {
+    //         id: 1,
+    //         name: "Lasanha 500g",
+    //         description: "Sabores: Bolonhesa, quatro queijos, bauru e vegano;",
+    //         image: require("@/assets/images/lasanha.jpg")
+    //     },
+    //     {
+    //         id: 2,
+    //         name: "Fettucine 500g",
+    //         description: "Sabores: Bolonhesa, quatro queijos, bauru e vegano;",
+    //         image: require("@/assets/images/fettucine.jpg")
+    //     },
+    //     {
+    //         id: 3,
+    //         name: "Espaguete 500g",
+    //         description: "Sabores: Bolonhesa, quatro queijos, bauru e vegano;",
+    //         image: require("@/assets/images/espaguete.jpeg")
+    //     },
+    //     {
+    //         id: 3,
+    //         name: "Pizza 500g",
+    //         description: "Sabores: Bolonhesa, quatro queijos, bauru e vegano;",
+    //         image: require("@/assets/images/pizza.jpg")
+    //     }
+    // ]
 
     return (
         <View style={styles.container}>
@@ -51,10 +73,10 @@ export default function Index() {
             <ScrollView style={styles.menuList}>
 
                 {
-                    MENU.map((item) => (
-                        <Link href={"/produto/page"} asChild>
+                    produtos?.map((item) => (
+                        <Link href={`/produto/${item.id}`} asChild>
                             <TouchableOpacity style={styles.menuItem}>
-                                <Image style={styles.itemImage} source={item.image}></Image>
+                                <Image style={styles.itemImage} source={item.imgUrl}></Image>
                                 <View style={styles.menuContent}>
                                     <Text style={styles.itemName}>{item.name}</Text>
                                     <Text style={styles.itemDescription}>{item.description}</Text>
